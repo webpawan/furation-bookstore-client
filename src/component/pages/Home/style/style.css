@@ -1,0 +1,63 @@
+.Home {
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.134), rgb(0, 0, 0)),
+    url("../images/bookStore.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: red;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.peragraph {
+  background-color: rgba(27, 27, 28, 0.748);
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+/* ------------store--------- */
+.store {
+  background-color: black;
+  height: auto;
+}
+
+.search {
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid white;
+  padding: 0 1rem;
+  width: 30%;
+  color: white;
+}
+
+.search:active,
+.search:focus {
+  /* border: none; */
+  outline: none;
+}
+
+.sort {
+  margin-left: 5rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.card-containers {
+}
+
+.my-card {
+  background: transparent;
+  padding: 1rem;
+  background-color: rgba(240, 248, 255, 0.059);
+}
