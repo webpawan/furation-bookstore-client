@@ -1,11 +1,11 @@
 .navbar {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 200;
 }
 
 ul li {
   padding: 0 1rem;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   font-weight: 400;
 }
 

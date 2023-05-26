@@ -1,10 +1,11 @@
 import React from "react";
 import "./style/style.css";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg shadow  navbar-light bg-light fixed-top ">
+      <nav className="navbar navbar-expand-lg shadow  navbar-light bg-light fixed-top  ">
         <div className="container-fluid">
           <h1 className="navbar">BookStore</h1>
           <button
@@ -16,24 +17,24 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse px-5 d-flex align-items-center justify-content-end "
+            className="collapse navbar-collapse px-5 mx-auto "
             id="navbarNav"
           >
-            <ul className="navbar-nav  m  py-2">
+            <ul className="navbar-nav  mx-auto  py-2">
               <li className="nav-item">
-                <a className="nav-link " to="/">
+                <NavLink className="nav-link" to="/">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link " to="/">
+                <NavLink className="nav-link " to="/store">
                   Books
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link " to="/products">
+                <NavLink className="nav-link " to="/addtocart">
                   cart
-                </a>
+                </NavLink>
               </li>
             </ul>
 
