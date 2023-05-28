@@ -8,12 +8,17 @@ const Home = () => {
       <div className="container-fluid bg-dark Home">
         <div
           className="row
-        home-container "
+        home-container overflow-hidden"
         >
           <motion.h1
             initial={{ opacity: 0, x: "-100px" }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: ".5" }}
+            transition={{
+              duration: 0.6,
+              delay: ".5",
+              type: "spring",
+              stiffness: 30,
+            }}
             className="display-2  text-light  d-flex justify-content-center"
           >
             THE BIGGEST{" "}
@@ -24,7 +29,12 @@ const Home = () => {
           <motion.p
             initial={{ opacity: 0, x: "100px" }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: "1" }}
+            transition={{
+              duration: 0.6,
+              delay: "1",
+              type: "spring",
+              stiffness: 30,
+            }}
             className="text-white w-75 text-center mx-auto peragraph"
           >
             Reading books is essential because it expands our knowledge,

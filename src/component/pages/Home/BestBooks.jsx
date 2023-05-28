@@ -18,8 +18,15 @@ const BookStore = ({ query }) => {
   return (
     <>
       <div className="container-fluid store text-white text-white p-5">
-        <div className="row ml-auto">
-          <h1 className="text-center mx-auto mt-5">Best {query} Book</h1>
+        <div className="row ml-auto overflow-hidden">
+          <motion.h1
+            initial={{ opacity: 0, y: "100%" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mx-auto mt-5"
+          >
+            Best {query} Book
+          </motion.h1>
         </div>
 
         <div className="row mx-auto card-containers my-5">
@@ -32,7 +39,7 @@ const BookStore = ({ query }) => {
                   key={i}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.3, duration: 0.8 }}
                 >
                   <div className="">
                     <img src={image} className=" img-fluid" alt="..." />

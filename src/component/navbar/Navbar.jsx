@@ -59,7 +59,7 @@ const Navbar = () => {
           initial={{ opacity: 0 }}
           animate={{ y: 100, opacity: 1 }}
           transition={{
-            delay: 1.5,
+            delay: 2,
             duration: 1,
             type: "spring",
             stiffness: 100,
