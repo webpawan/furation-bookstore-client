@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getRefresh, setRefresh } from "../../../redux/features/ProductSlice";
-
+import { motion } from "framer-motion";
 const Product = () => {
   const { productId } = useParams();
   const [data, setdata] = useState("");
@@ -45,7 +45,12 @@ const Product = () => {
   }, [productId]);
   return (
     <>
-      <div className="container mt-5 pt-4 vh-100">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="container mt-5 pt-4 vh-100"
+      >
         <div className=" py-5">
           <NavLink to="/store">continue Shopping</NavLink>
         </div>
@@ -54,7 +59,12 @@ const Product = () => {
             loading...
           </h1>
         ) : (
-          <div className="row mx-auto mt-3">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="row mx-auto mt-3"
+          >
             <div className="col-10 col-md-4">
               <div className="img-container">
                 <img src={data.image} className="img-fluid" alt="" srcSet="" />
@@ -84,9 +94,9 @@ const Product = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

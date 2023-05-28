@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getQuantity,
   getRefresh,
   setAmount,
-  setQuantity,
   setRefresh,
 } from "../../../redux/features/ProductSlice";
-
+import { motion } from "framer-motion";
 const Cartitem = ({ item }) => {
   const dispatch = useDispatch();
   const refresh = useSelector(getRefresh);
@@ -88,7 +86,12 @@ const Cartitem = ({ item }) => {
 
   return (
     <>
-      <div className="my-3 col-12 d-flex justify-content-between align-items-center mx-auto ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="my-3 col-12 d-flex justify-content-between align-items-center mx-auto "
+      >
         <div className="col-sm-2 col-4 d-col-flex align-items-center mx-auto text-center">
           <div className="img_container--cart mx-auto ">
             <img
@@ -133,7 +136,7 @@ const Cartitem = ({ item }) => {
             <i className="fa-solid fa-trash"></i>
           </button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

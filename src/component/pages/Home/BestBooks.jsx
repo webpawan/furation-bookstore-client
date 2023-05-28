@@ -17,7 +17,12 @@ const BookStore = ({ query }) => {
 
   return (
     <>
-      <div className="container-fluid store text-white text-white p-5">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="container-fluid store text-white text-white p-5"
+      >
         <div className="row ml-auto overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: "100%" }}
@@ -61,7 +66,7 @@ const BookStore = ({ query }) => {
             <div></div>
           )}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import bg from "../Home/images/bookStore.jpg";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-
+import { motion } from "framer-motion";
 const BookStore = () => {
   const [query, setQuery] = useState("website");
   const [selectedSortOption, setSelectedSortOption] = useState("a-z");
@@ -59,9 +58,14 @@ const BookStore = () => {
 
   return (
     <>
-      <div className="container-fluid my-5 py-5 ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="container-fluid my-5 py-5  "
+      >
         <div className="row mx-auto  ">
-          <div className="col-11 col-md-4 mx-auto ">
+          <div className="col-11 col-md-4 mx-auto vh-100">
             <form action="" onSubmit={handleSearch}>
               <div className="input-group mb-3 ">
                 <div className="input-group-prepend">
@@ -107,11 +111,14 @@ const BookStore = () => {
             ) : (
               <div className="row mx-auto">
                 {books.length > 1 ? (
-                  books.map((book) => {
+                  books.map((book, i) => {
                     const { title, subtitle, image, price, isbn13 } = book;
                     return (
-                      <div
+                      <motion.div
                         key={isbn13}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: i * 0.1, duration: 0.8 }}
                         className="col-10 col-sm-4 col-md-3 mx-auto mb-5"
                       >
                         <div className="">
@@ -128,7 +135,7 @@ const BookStore = () => {
                             </NavLink>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })
                 ) : (
@@ -138,7 +145,7 @@ const BookStore = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -5,7 +5,12 @@ import { motion } from "framer-motion";
 const Home = () => {
   return (
     <>
-      <div className="container-fluid bg-dark Home">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="container-fluid bg-dark Home"
+      >
         <div
           className="row
         home-container overflow-hidden"
@@ -45,7 +50,7 @@ const Home = () => {
             for knowledge and self-discovery.
           </motion.p>
         </div>
-      </div>
+      </motion.div>
       <BookStore query="Javascript" />
       <BookStore query="Frontend" />
       <BookStore query="Backend" />
