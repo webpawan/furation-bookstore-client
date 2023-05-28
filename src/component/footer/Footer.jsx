@@ -24,7 +24,7 @@ const Footer = () => {
               <p>Help & FAQ</p>
               <p>work with us</p>
               <p>Carrers</p>
-            </div>{" "}
+            </div>
             <div className="mx-3">
               <p>Follow Us</p>
               <div className="d-flex">
@@ -37,7 +37,7 @@ const Footer = () => {
                   <span>
                     <i className="fa-brands fa-linkedin-in"></i>
                   </span>
-                </a>{" "}
+                </a>
                 <a>
                   <span>
                     <i className="fa-brands fa-whatsapp"></i>
