@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import bg from "./images/bookStore.jpg";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const BookStore = ({ query }) => {
   const [data, setData] = useState("");
   const fetchData = async () => {
@@ -22,30 +21,19 @@ const BookStore = ({ query }) => {
         <div className="row ml-auto">
           <h1 className="text-center mx-auto mt-5">Best {query} Book</h1>
         </div>
-        {/* <div className="row mx-auto ">
-          <div className="col-md-12  mt-5 text-center">
-            <input
-              type="text"
-              name=""
-              id=""
-              className="search"
-              placeholder="search it book by leanguage"
-            />
-            <input
-              type="text"
-              name=""
-              placeholder="sort"
-              className="sort"
-              id=""
-            />
-          </div>
-        </div> */}
+
         <div className="row mx-auto card-containers my-5">
           {data ? (
             data.slice(0, 8).map((card, i) => {
               const { image, title, subtitle, isbn13 } = card;
               return (
-                <div className="col-10 col-sm-4 col-md-3 mx-auto mb-2" key={i}>
+                <motion.div
+                  className="col-10 col-sm-4 col-md-3 mx-auto mb-2"
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                >
                   <div className="">
                     <img src={image} className=" img-fluid" alt="..." />
                     <div className="card-body">
@@ -59,7 +47,7 @@ const BookStore = ({ query }) => {
                       </NavLink>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })
           ) : (

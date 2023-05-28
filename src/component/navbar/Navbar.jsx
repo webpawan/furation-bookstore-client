@@ -58,7 +58,12 @@ const Navbar = () => {
           className="cart_icon shadow"
           initial={{ opacity: 0 }}
           animate={{ y: 100, opacity: 1 }}
-          transition={{ delay: 3, duration: 1, type: "spring", stiffness: 100 }}
+          transition={{
+            delay: 1.5,
+            duration: 1,
+            type: "spring",
+            stiffness: 100,
+          }}
         >
           <lord-icon
             src="https://cdn.lordicon.com/dnoiydox.json"
