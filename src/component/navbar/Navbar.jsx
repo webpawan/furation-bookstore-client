@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg shadow  navbar-light bg-light fixed-top  ">
         <div className="container-fluid">
-          <h1 className="navbar">BookStore</h1>
+          <h1 className="display-6">BookStore</h1>
           <button
             className="navbar-toggler"
             type="button"
