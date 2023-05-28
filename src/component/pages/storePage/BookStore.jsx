@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 const BookStore = () => {
   const [query, setQuery] = useState("website");
   const [selectedSortOption, setSelectedSortOption] = useState("a-z");
@@ -109,39 +109,45 @@ const BookStore = () => {
                 loading..
               </h1>
             ) : (
-              <div className="row mx-auto">
-                {books.length > 1 ? (
-                  books.map((book, i) => {
-                    const { title, subtitle, image, price, isbn13 } = book;
-                    return (
-                      <motion.div
-                        key={isbn13}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: i * 0.1, duration: 0.8 }}
-                        className="col-10 col-sm-4 col-md-3 mx-auto mb-5"
-                      >
-                        <div className="">
-                          <img src={image} className=" img-fluid" alt="..." />
-                          <div className="card-body">
-                            <p>{price}</p>
-                            <h5 className="card-title my-2">{title}</h5>
-                            <p className="card-text">{subtitle}</p>
+              <motion.div layout className="row mx-auto">
+                <AnimatePresence>
+                  {books.length > 1 ? (
+                    books.map((book, i) => {
+                      const { title, subtitle, image, price, isbn13 } = book;
+                      return (
+                        <motion.div
+                          key={isbn13}
+                          layout
+                          animate={{ opacity: 1 }}
+                          initial={{ opacity: 0 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className="col-10 col-sm-4 col-md-3 mx-auto mb-5"
+                        >
+                          <div className="">
+                            <img src={image} className=" img-fluid" alt="..." />
+                            <div className="card-body">
+                              <p>{price}</p>
+                              <h5 className="card-title my-2">{title}</h5>
+                              <p className="card-text">{subtitle}</p>
 
-                            <NavLink to={`/${isbn13}`}>
-                              <button className="btn btn-outline-dark">
-                                view details
-                              </button>
-                            </NavLink>
+                              <NavLink to={`/${isbn13}`}>
+                                <button className="btn btn-outline-dark">
+                                  view details
+                                </button>
+                              </NavLink>
+                            </div>
                           </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })
-                ) : (
-                  <h1 className="text-dark">please search with currect name</h1>
-                )}
-              </div>
+                        </motion.div>
+                      );
+                    })
+                  ) : (
+                    <h1 className="text-dark">
+                      please search with currect name
+                    </h1>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             )}
           </div>
         </div>

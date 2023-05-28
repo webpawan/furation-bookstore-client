@@ -88,7 +88,7 @@ const Cartitem = ({ item }) => {
     <>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
         className="my-3 col-12 d-flex justify-content-between align-items-center mx-auto "
       >

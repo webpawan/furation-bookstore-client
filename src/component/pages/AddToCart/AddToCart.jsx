@@ -9,6 +9,7 @@ import {
   setQuantity,
   setRefresh,
 } from "../../../redux/features/ProductSlice";
+import { motion } from "framer-motion";
 
 const AddtoCard = () => {
   const [cart, setcart] = useState([]);
@@ -74,12 +75,12 @@ const AddtoCard = () => {
             </div>
           </div>
           <hr />
-          <div>
+          <motion.div layout>
             {cart.map((curElem, i) => {
               return <Cartitem key={i} item={curElem} />;
             })}
             <hr className="w-90 mx-atuo my-2" />
-          </div>
+          </motion.div>
 
           <div className="col-12 d-sm-flex justify-content-between align-items-center mt-5 mx-auto text-center ">
             <NavLink to="/store">
