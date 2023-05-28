@@ -57,9 +57,6 @@ const BookStore = ({ query }) => {
                           view details
                         </button>
                       </NavLink>
-                      <button className="btn btn-outline-secondary mx-3">
-                        Add to card
-                      </button>
                     </div>
                   </div>
                 </div>

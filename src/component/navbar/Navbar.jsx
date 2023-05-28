@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style/style.css";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getRefresh } from "../../redux/features/ProductSlice";
 const Navbar = () => {
+  const refresh = useSelector(getRefresh);
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    const storedValue = localStorage.getItem("quantity");
+    setValue(storedValue);
+  }, [refresh]);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg shadow  navbar-light bg-light fixed-top  ">
@@ -44,21 +53,22 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <motion.div
-        className="cart_icon shadow"
-        initial={{ opacity: 0 }}
-        animate={{ y: 100, opacity: 1 }}
-        transition={{ delay: 3, duration: 1, type: "spring", stiffness: 100 }}
-      >
-        <lord-icon
-          src="https://cdn.lordicon.com/dnoiydox.json"
-          trigger="hover"
-          colors="primary:#121331,secondary:#242424"
-          style={{ width: "30px" }}
-        ></lord-icon>
-        {/* <p>{total_item}</p> */}
-        <p>5</p>
-      </motion.div>
+      <NavLink to="/addtocart">
+        <motion.div
+          className="cart_icon shadow"
+          initial={{ opacity: 0 }}
+          animate={{ y: 100, opacity: 1 }}
+          transition={{ delay: 3, duration: 1, type: "spring", stiffness: 100 }}
+        >
+          <lord-icon
+            src="https://cdn.lordicon.com/dnoiydox.json"
+            trigger="hover"
+            colors="primary:#121331,secondary:#242424"
+            style={{ width: "30px" }}
+          ></lord-icon>
+          <p>{value}</p>
+        </motion.div>
+      </NavLink>
     </>
   );
 };

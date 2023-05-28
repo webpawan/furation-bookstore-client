@@ -30,17 +30,17 @@ const Footer = () => {
               <div className="d-flex">
                 <a>
                   <span>
-                    <i class="fa-brands fa-twitter"></i>
+                    <i className="fa-brands fa-twitter"></i>
                   </span>
                 </a>
                 <a className="mx-3">
                   <span>
-                    <i class="fa-brands fa-linkedin-in"></i>
+                    <i className="fa-brands fa-linkedin-in"></i>
                   </span>
                 </a>{" "}
                 <a>
                   <span>
-                    <i class="fa-brands fa-whatsapp"></i>
+                    <i className="fa-brands fa-whatsapp"></i>
                   </span>
                 </a>
               </div>

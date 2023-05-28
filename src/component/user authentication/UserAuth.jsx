@@ -3,10 +3,10 @@ import img from "./img/bg.jpg";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import "./style/style.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -37,7 +37,7 @@ const Auth = () => {
 
       if (data) {
         localStorage.setItem("userInfo", JSON.stringify(data));
-        // navigate("/home");
+        navigate("/home");
       } else {
         res.status(400).send("user trying with same email id");
       }
@@ -72,7 +72,7 @@ const Auth = () => {
 
       if (data) {
         localStorage.setItem("userInfo", JSON.stringify(data));
-        // navigate("/home");
+        navigate("/home");
       }
     } catch (error) {
       res.status(400).json("signin Problem");

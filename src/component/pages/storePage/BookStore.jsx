@@ -5,17 +5,54 @@ import axios from "axios";
 
 const BookStore = () => {
   const [query, setQuery] = useState("website");
+  const [selectedSortOption, setSelectedSortOption] = useState("a-z");
   const [books, setBooks] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const fetchBooks = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         `https://api.itbook.store/1.0/search/${query}`
       );
-      console.log(data);
+      setLoading(false);
+
       setBooks(data.books);
-    } catch (error) {}
+      setQuery("");
+    } catch (error) {
+      console.log(error);
+      alert("please search again or refresh the page");
+    }
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchBooks();
+  };
+
+  const sortBooks = (option) => {
+    const sortedBooks = [...books];
+    if (option === "a-z") {
+      sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (option === "z-a") {
+      sortedBooks.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (option === "low") {
+      sortedBooks.sort((a, b) => {
+        const priceA = parseFloat(a.price.replace("$", ""));
+        const priceB = parseFloat(b.price.replace("$", ""));
+        return priceA - priceB;
+      });
+    } else if (option === "high") {
+      sortedBooks.sort((a, b) => {
+        const priceA = parseFloat(a.price.replace("$", ""));
+        const priceB = parseFloat(b.price.replace("$", ""));
+        return priceB - priceA;
+      });
+    }
+    setBooks(sortedBooks);
+  };
+  useEffect(() => {
+    sortBooks(selectedSortOption);
+  }, [selectedSortOption]);
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -25,10 +62,11 @@ const BookStore = () => {
       <div className="container-fluid my-5 py-5 ">
         <div className="row mx-auto  ">
           <div className="col-11 col-md-4 mx-auto ">
-            <form action="" onSubmit={(e) => e.preventDefault()}>
+            <form action="" onSubmit={handleSearch}>
               <div className="input-group mb-3 ">
                 <div className="input-group-prepend">
                   <button
+                    type="submit"
                     className="input-group-text btn btn-outline-dark"
                     id="basic-addon1"
                   >
@@ -37,8 +75,8 @@ const BookStore = () => {
                 </div>
                 <input
                   type="text"
-                  // value={text}
-                  // onChange={updateFilterValue}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                   className="form-control"
                   placeholder="Search any languages , library , framework etc."
                   name="text"
@@ -50,72 +88,54 @@ const BookStore = () => {
               <h5> Filters</h5>
               <form action="#">
                 <select
-                  name="company"
-                  // onClick={updateFilterValue}
+                  value={selectedSortOption}
+                  onChange={(e) => setSelectedSortOption(e.target.value)}
                 >
-                  <option
-                    //  value={curElem} key={index}
-                    value="A to Z"
-                    name="company"
-                  >
-                    {/* {curElem} */}sort by name{" "}
-                  </option>
-                  <option
-                    //  value={curElem} key={index}
-                    value="A to Z"
-                    name="company"
-                  >
-                    {/* {curElem} */}A to Z{" "}
-                  </option>
-                  <option
-                    //  value={curElem} key={index}
-                    value="A to Z"
-                    name="company"
-                  >
-                    {/* {curElem} */}Z to A{" "}
-                  </option>
-                  {/* {companyData.map((curElem, index) => {
-                    return (
-                      <option value={curElem} key={index} name="company">
-                        {curElem}
-                      </option>
-                    );
-                  })} */}
+                  <option value="low">low price</option>
+                  <option value="high">high price</option>
+                  <option value="a-z">A to Z</option>
+                  <option value="z-a">Z to A</option>
                 </select>
               </form>
             </div>
-            <div class="range">
-              <h3>Sort Books By Price</h3>
-              <input type="range" class="form-range" id="customRange1" />
-            </div>
           </div>
           <div className="col-11 col-md-8 mx-auto">
-            <div className="row mx-auto">
-              {books.length > 1 ? (
-                books.map((book) => {
-                  const { title, subtitle, image, price, isbn13 } = book;
-                  return (
-                    <div className="col-10 col-sm-4 col-md-3 mx-auto mb-5">
-                      <div className="">
-                        <img src={image} className=" img-fluid" alt="..." />
-                        <div className="card-body">
-                          <h5 className="card-title my-2">{title}</h5>
-                          <p className="card-text">{subtitle}</p>
+            {loading ? (
+              <h1 className="display-4 d-flex justify-content-center align-items-center">
+                loading..
+              </h1>
+            ) : (
+              <div className="row mx-auto">
+                {books.length > 1 ? (
+                  books.map((book) => {
+                    const { title, subtitle, image, price, isbn13 } = book;
+                    return (
+                      <div
+                        key={isbn13}
+                        className="col-10 col-sm-4 col-md-3 mx-auto mb-5"
+                      >
+                        <div className="">
+                          <img src={image} className=" img-fluid" alt="..." />
+                          <div className="card-body">
+                            <p>{price}</p>
+                            <h5 className="card-title my-2">{title}</h5>
+                            <p className="card-text">{subtitle}</p>
 
-                          <NavLink to={`/${isbn13}`}>
-                            <button className="btn btn-outline-dark">
-                              view details
-                            </button>
-                          </NavLink>
+                            <NavLink to={`/${isbn13}`}>
+                              <button className="btn btn-outline-dark">
+                                view details
+                              </button>
+                            </NavLink>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div></div>
-              )}
-            </div>
+                    );
+                  })
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

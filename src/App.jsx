@@ -11,10 +11,10 @@ import BookStore from "./component/pages/storePage/BookStore";
 const App = () => {
   return (
     <>
-      {/* <UserAuth /> */}
       <Navbar />
       <AnimatePresence>
         <Routes>
+          {/* <Route path="/" element={<UserAuth />} exact /> */}
           <Route path="/" element={<Home />} exact />
           <Route path="/:productId" element={<ProductDetail />} />
           <Route path="/store" element={<BookStore />} />
