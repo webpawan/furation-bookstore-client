@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import Navbar from "../../navbar/Navbar";
+import Footer from "../../footer/Footer";
 const BookStore = () => {
   const [query, setQuery] = useState("website");
   const [selectedSortOption, setSelectedSortOption] = useState("a-z");

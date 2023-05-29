@@ -55,7 +55,6 @@ const Cartitem = ({ item }) => {
       localStorage.setItem("cartItems", JSON.stringify(filteredItems));
     }
 
-    // localStorage.setItem("cartItems", JSON.stringify(filteredItems));
     calculateTotalQuantity(filteredItems);
   };
   const removeItem = (title) => {
@@ -98,7 +97,6 @@ const Cartitem = ({ item }) => {
               src={item.image}
               style={{ width: "100px" }}
               className="img-container--cart"
-              //   alt={}
             />
           </div>
           <div className="mx-2  ">

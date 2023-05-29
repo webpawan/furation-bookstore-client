@@ -2,6 +2,8 @@ import React from "react";
 import "./style/style.css";
 import BookStore from "./BestBooks";
 import { motion } from "framer-motion";
+import Navbar from "../../navbar/Navbar";
+import Footer from "../../footer/Footer";
 const Home = () => {
   return (
     <>

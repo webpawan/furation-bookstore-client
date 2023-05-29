@@ -30,7 +30,7 @@ const BookStore = ({ query }) => {
             transition={{ duration: 0.8 }}
             className="text-center mx-auto mt-5"
           >
-            Best {query} Book
+            Best {query} Books
           </motion.h1>
         </div>
 

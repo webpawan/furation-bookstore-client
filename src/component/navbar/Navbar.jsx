@@ -7,11 +7,13 @@ import { getRefresh } from "../../redux/features/ProductSlice";
 const Navbar = () => {
   const refresh = useSelector(getRefresh);
   const [value, setValue] = useState(0);
+  const [info, setInfo] = useState("");
   useEffect(() => {
-    const storedValue = localStorage.getItem("quantity");
+    const storedValue = JSON.parse(localStorage.getItem("quantity"));
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    setInfo(user);
     setValue(storedValue);
   }, [refresh]);
-
   return (
     <>
       <nav className="navbar navbar-expand-lg shadow  navbar-light bg-light fixed-top  ">
@@ -47,9 +49,9 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <h5 className="d-flex  ">
+            <div className="d-flex user " type="button">
               <i className="fa-regular fa-circle-user"></i>
-            </h5>
+            </div>
           </div>
         </div>
       </nav>

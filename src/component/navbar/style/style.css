@@ -3,6 +3,10 @@
   font-weight: 200;
 }
 
+.user {
+  cursor: pointer;
+}
+
 ul li {
   padding: 0 1rem;
   /* font-size: 1.2rem; */

@@ -5,6 +5,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getRefresh, setRefresh } from "../../../redux/features/ProductSlice";
 import { motion } from "framer-motion";
+import Navbar from "../../navbar/Navbar";
+import Footer from "../../footer/Footer";
 const Product = () => {
   const { productId } = useParams();
   const [data, setdata] = useState("");
@@ -12,6 +14,7 @@ const Product = () => {
   const refresh = useSelector(getRefresh);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
   const fetchProductDetail = async () => {
     try {
       setLoading(true);

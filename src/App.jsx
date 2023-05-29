@@ -14,7 +14,7 @@ const App = () => {
       <Navbar />
       <AnimatePresence>
         <Routes>
-          <Route path="/" element={<Home />} exact />
+          <Route path="/" element={<Home />} />
           <Route path="/:productId" element={<ProductDetail />} />
           <Route path="/store" element={<BookStore />} />
           <Route path="/addtocart" element={<AddtoCard />} />
