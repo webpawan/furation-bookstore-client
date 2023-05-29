@@ -7,11 +7,8 @@ import { getRefresh } from "../../redux/features/ProductSlice";
 const Navbar = () => {
   const refresh = useSelector(getRefresh);
   const [value, setValue] = useState(0);
-  const [info, setInfo] = useState("");
   useEffect(() => {
     const storedValue = JSON.parse(localStorage.getItem("quantity"));
-    const user = JSON.parse(localStorage.getItem("userInfo"));
-    setInfo(user);
     setValue(storedValue);
   }, [refresh]);
   return (

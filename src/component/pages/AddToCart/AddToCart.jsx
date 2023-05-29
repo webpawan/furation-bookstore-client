@@ -20,12 +20,6 @@ const AddtoCard = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [render, setRender] = useState("");
-  const clearCart = () => {
-    localStorage.removeItem("quantity");
-    localStorage.removeItem("cartItems");
-    dispatch(setRefresh());
-  };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -60,7 +54,6 @@ const AddtoCard = () => {
         }
       );
       console.log(data);
-      setRender(true);
       localStorage.clear();
       localStorage.removeItem("quantity");
       dispatch(setRefresh());
@@ -73,9 +66,11 @@ const AddtoCard = () => {
     setAddress("");
   };
 
-  useEffect(() => {
-    setRefresh(false);
-  }, [render]);
+  const clearCart = () => {
+    localStorage.removeItem("quantity");
+    localStorage.removeItem("cartItems");
+    dispatch(setRefresh());
+  };
 
   if (cart.length === 0) {
     return (
