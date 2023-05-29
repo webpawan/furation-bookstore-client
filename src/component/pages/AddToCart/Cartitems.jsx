@@ -13,7 +13,7 @@ const Cartitem = ({ item }) => {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
     setData(items);
-  }, [localStorage.getItem("cartItems")]);
+  }, [localStorage.getItem("cartItems"), refresh]);
 
   const increaseBtn = (title) => {
     const updatedItems = data.map((item) => {

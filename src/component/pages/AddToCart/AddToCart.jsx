@@ -4,9 +4,7 @@ import Cartitem from "./Cartitems";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAmount,
-  getQuantity,
   getRefresh,
-  setQuantity,
   setRefresh,
 } from "../../../redux/features/ProductSlice";
 import { motion } from "framer-motion";
@@ -25,7 +23,6 @@ const AddtoCard = () => {
   const [render, setRender] = useState("");
   const clearCart = () => {
     localStorage.removeItem("quantity");
-
     localStorage.removeItem("cartItems");
     dispatch(setRefresh());
   };
@@ -36,24 +33,26 @@ const AddtoCard = () => {
   }, [refresh]);
 
   const placeOrder = async () => {
-    if (!email || !email || !phone || !address) {
+    if (!name || !email || !phone || !address) {
       return toast.error("Fill the all fields", {
         position: "top-center",
         autoClose: 3000,
         closeOnClick: true,
-
         draggable: true,
         progress: undefined,
       });
     }
-
-    const items = JSON.parse(localStorage.getItem("cartItems"));
-    let userInfo = { name: name, email: email, phone: phone, address: address };
-    items.push(userInfo);
-
+    const books = JSON.parse(localStorage.getItem("cartItems"));
     try {
+      const payload = {
+        name,
+        email,
+        phone,
+        address,
+        books,
+      };
       const { data } = await toast.promise(
-        axios.post("/api/book/order", items),
+        axios.post("/api/book/order", payload),
         {
           pending: "order is placing",
           success: "order place successfully",
@@ -62,15 +61,20 @@ const AddtoCard = () => {
       );
       console.log(data);
       setRender(true);
+      localStorage.clear();
+      localStorage.removeItem("quantity");
+      dispatch(setRefresh());
     } catch (error) {
       console.log(error);
     }
-    localStorage.clear();
+    setName("");
+    setEmail("");
+    setPhone("");
+    setAddress("");
   };
 
   useEffect(() => {
     setRefresh(false);
-    console.log("hy");
   }, [render]);
 
   if (cart.length === 0) {
@@ -97,7 +101,6 @@ const AddtoCard = () => {
   return (
     <>
       <ToastContainer />
-
       <div
         className="modal fade"
         id="order"
@@ -177,7 +180,6 @@ const AddtoCard = () => {
             <div className="col-sm-2 col-4 text-center mx-auto">
               <h5 className="heading-1 text-capitalize size">quantity</h5>
             </div>
-
             <div className="col-sm-2 col-4 text-center mx-auto">
               <h5 className="heading-1 text-capitalize size">remove</h5>
             </div>
